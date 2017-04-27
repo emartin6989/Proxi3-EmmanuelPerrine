@@ -22,86 +22,78 @@ public class ConseillerService implements IConseillerService {
 
 	@Override
 	public Client creerClient(Client c, Coordonnees coor) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.creerClient(c, coor);
 	}
 
 	@Override
 	public CompteCourant creerCompteCourant(Client c, CompteCourant compte) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.creerCompteCourant(c, compte);
 	}
 
 	@Override
 	public CompteEpargne creerCompteEpargne(Client c, CompteEpargne compte) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.creerCompteEpargne(c, compte);
 	}
 
 	@Override
 	public void associerCarteCompte(Carte carte, CompteCourant compte) {
-		// TODO Auto-generated method stub
+		dao.associerCarteCompte(carte, compte);
 		
 	}
 
 	@Override
 	public void associerCompteClient(Client client, Compte compte) {
-		// TODO Auto-generated method stub
+		dao.associerCompteClient(client, compte);
 		
 	}
 
 	@Override
 	public void associerConseillerClient(Conseiller conseiller, Client client) {
-		// TODO Auto-generated method stub
+		dao.associerConseillerClient(conseiller, client);
 		
 	}
 
 	@Override
 	public int modifierClient(Client client, Coordonnees coor) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.modifierClient(client, coor);
 	}
 
 	@Override
 	public Collection<Client> listerClients(Conseiller cons) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.listerClients(cons);
 	}
 
 	@Override
 	public Collection<Compte> listerComptes(Client c) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.listerComptes(c);
 	}
 
 	@Override
 	public void effectuerVirement(Compte compteEmetteur, Compte compteRecepteur, double montant) {
-		// TODO Auto-generated method stub
+		dao.retraitSolde(compteEmetteur, montant);
+		dao.ajoutSolde(compteRecepteur, montant);
 		
 	}
 
 	@Override
 	public void supprimerClient(Client c) {
-		// TODO Auto-generated method stub
+		dao.supprimerClient(c);
 		
 	}
 
 	@Override
-	public String lireInfoClient(Client client) {
-		// TODO Auto-generated method stub
-		return null;
+	public Client lireInfoClient(int idClient) {
+		return dao.lireInfoClient(idClient);
 	}
 
 	@Override
-	public Carte creerCarteVisaPremier() {
-		Carte visaPremier = new CarteVisaPremier();
-		return visaPremier;
+	public Carte creerCarteVisaPremier(CarteVisaPremier cvp) {
+		return dao.creerCarteVisaPremier(cvp);
 	}
 
 	@Override
-	public Carte creerCarteVisaElectron() {
-		Carte visaElectron = new CarteVisaElectron();
-		return visaElectron;
+	public Carte creerCarteVisaElectron(CarteVisaElectron cve) {
+		return dao.creerCarteVisaElectron(cve);
 	}
 
 
