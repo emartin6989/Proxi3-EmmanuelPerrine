@@ -1,4 +1,4 @@
-                                                                                        package metier;
+package metier;
 
 import java.util.Collection;
 
@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
  *
  */
 @Entity
-//@DiscriminatorValue("CLIENT")
+// @DiscriminatorValue("CLIENT")
 @NamedQuery(name = "Client.findAll", query = "SELECT c FROM Client c where c.conseiller.id = :idcons")
 public class Client extends Personne {
 
@@ -28,13 +28,22 @@ public class Client extends Personne {
 	@OneToMany(mappedBy = "client")
 	private Collection<Placement> placements;
 
+	/**
+	 * @return the entreprise
+	 */
 	public boolean isEntreprise() {
 		return entreprise;
 	}
 
 	/**
-	 * Getter de l'attribut conseiller
-	 * 
+	 * @param entreprise
+	 *            the entreprise to set
+	 */
+	public void setEntreprise(boolean entreprise) {
+		this.entreprise = entreprise;
+	}
+
+	/**
 	 * @return the conseiller
 	 */
 	public Conseiller getConseiller() {
@@ -42,28 +51,11 @@ public class Client extends Personne {
 	}
 
 	/**
-	 * Setter de l'attribut conseiller
-	 * 
 	 * @param conseiller
 	 *            the conseiller to set
 	 */
 	public void setConseiller(Conseiller conseiller) {
 		this.conseiller = conseiller;
-	}
-
-	/**
-	 * @return the compte
-	 */
-	public Collection<Compte> getCompte() {
-		return comptes;
-	}
-
-	/**
-	 * @param compte
-	 *            the compte to set
-	 */
-	public void setCompte(Collection<Compte> compte) {
-		this.comptes = compte;
 	}
 
 	/**
@@ -94,16 +86,6 @@ public class Client extends Personne {
 	 */
 	public void setPlacements(Collection<Placement> placements) {
 		this.placements = placements;
-	}
-
-	/**
-	 * Setter de l'attribut entreprise
-	 * 
-	 * @param entreprise
-	 *            the entreprise to set
-	 */
-	public void setEntreprise(boolean entreprise) {
-		this.entreprise = entreprise;
 	}
 
 	@Override

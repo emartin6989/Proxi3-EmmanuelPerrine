@@ -1,8 +1,10 @@
 package dao;
 
-import java.sql.SQLException;
 import java.util.Collection;
 
+import metier.Carte;
+import metier.CarteVisaElectron;
+import metier.CarteVisaPremier;
 import metier.Client;
 import metier.Compte;
 import metier.CompteCourant;
@@ -11,22 +13,37 @@ import metier.Conseiller;
 import metier.Coordonnees;
 
 public interface Idao {
-
-
-
-	/**
-	 * Méthode permettant d'ajouter un client
-	 * 
-	 * @param cons
-	 *            Conseiller rajoutant un client à sa liste de clients
-	 * @param c
-	 *            Client à rajouter
-	 * @param coor
-	 *            Coordonnées du client à préciser
-	 * @return l'Id du client rajouté
-	 */
-	public int ajouterClient();
-
 	
+	public Conseiller authentificationConseiller(String login, String mdp);
+
+	public Client creerClient(Client c, Coordonnees coor);
+
+	public CompteCourant creerCompteCourant(Client c, CompteCourant compte);
+
+	public CompteEpargne creerCompteEpargne(Client c, CompteEpargne compte);
+
+	public void associerCarteCompte(Carte carte, CompteCourant compte);
+
+	public void associerCompteClient(Client client, Compte compte);
+
+	public void associerConseillerClient(Conseiller conseiller, Client client);
+
+	public int modifierClient(Client client, Coordonnees coor);
+
+	public Collection<Client> listerClients(Conseiller cons);
+
+	public Collection<Compte> listerComptes(Client c);
+
+	public void supprimerClient(Client c);
+
+	public Client lireInfoClient(int id);
+
+	public Carte creerCarteVisaPremier(CarteVisaPremier cvp);
+
+	public Carte creerCarteVisaElectron(CarteVisaElectron cve);
+
+	public void ajoutSolde(Compte c, double montant);
+
+	public void retraitSolde(Compte c, double montant);
 
 }
