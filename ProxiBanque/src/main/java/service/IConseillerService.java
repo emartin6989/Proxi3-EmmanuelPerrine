@@ -2,40 +2,43 @@ package service;
 
 import java.util.Collection;
 
+import metier.Carte;
 import metier.Client;
 import metier.Compte;
 import metier.CompteCourant;
 import metier.CompteEpargne;
 import metier.Conseiller;
 import metier.Coordonnees;
-import service.exceptions.ClientGererParAutreConseillerException;
-import service.exceptions.ClientInexistantException;
-import service.exceptions.MontantNegatifException;
-import service.exceptions.NombreClientsMaxAtteintException;
-import service.exceptions.SoldeInsuffisantException;
-import servlets.exceptions.NombreCompteMaxAtteintException;
 
 public interface IConseillerService {
-
-	public Conseiller authentificationConseiller(String login, String mdp);
-
-	public Collection<Client> listerClients(Conseiller cons);
-
-	public Collection<Compte> listerComptes(Client c);
-
-	void effectuerVirement(Conseiller conseiller, Compte compteEmetteur, Compte compteRecepteur, double montant)
-			throws SoldeInsuffisantException, MontantNegatifException,
-			ClientGererParAutreConseillerException;
+	
+	public Client creerClient(Client c, Coordonnees coor);
+	public CompteCourant creerCompteCourant(Client c, CompteCourant compte);
+	public CompteEpargne creerCompteEpargne(Client c, CompteEpargne compte);
+	public Carte creerCarte();
+	
+	
+	public void associerCarteCompte(Carte carte, CompteCourant compte);
+	public void associerCompteClient(Client client, Compte compte);
+	public void associerConseillerClient(Conseiller conseiller, Client client);
+	
 
 	public int modifierClient(Client client, Coordonnees coor);
+	
 
-	public int ajouterClient(Conseiller cons, Client c, Coordonnees coor)throws NombreClientsMaxAtteintException;
+	public Collection<Client> listerClients(Conseiller cons);
+	public Collection<Compte> listerComptes(Client c);
+	
 
-	public void supprimerClient(Conseiller cons, Client c, int id) throws ClientInexistantException, ClientGererParAutreConseillerException;
+	public void effectuerVirement(Compte compteEmetteur, Compte compteRecepteur, double montant);
 
-	public int ajouterCompteCourant(Client c, CompteCourant compte)throws NombreCompteMaxAtteintException;
 
-	public int ajouterCompteEpargne(Client c, CompteEpargne compte)throws NombreCompteMaxAtteintException;
+	public void supprimerClient(Client c, int id) ;
+
+	
+	public String lireInfoClient(Client client);
+	
+	
 
 	
 }
