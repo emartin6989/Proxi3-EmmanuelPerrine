@@ -62,6 +62,11 @@
 			<artifactId>jsf-impl</artifactId>
 			<version>2.2.4</version>
 		</dependency>
+		<dependency>
+    <groupId>org.primefaces</groupId>
+    <artifactId>primefaces</artifactId>
+    <version>6.1</version>
+</dependency>
 	</dependencies>
 	<build>
 		<finalName>ProxiBanque</finalName>
