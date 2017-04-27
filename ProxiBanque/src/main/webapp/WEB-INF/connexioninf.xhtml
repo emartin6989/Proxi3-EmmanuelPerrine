@@ -12,8 +12,8 @@
 
 <h:body>
 <p:panel>
-<p:outputLabel value="${ !empty sessionScope.droits }"> Connecté :  ${ sessionScope.prenom } ${ sessionScope.nom }</p:outputLabel>
-<p:outputLabel value="${ empty sessionScope.droits }"> Non connecté </p:outputLabel>
+<h:outputLink value=" Connecté :  #{ sessionScope.prenom } #{ sessionScope.nom }" rendered="#{ !empty sessionScope.droits }"/>
+<h:outputLink value="Non connecté" rendered="#{ empty sessionScope.droits }"/>
 </p:panel>
 </h:body>
 </h:html>
