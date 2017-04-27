@@ -24,10 +24,6 @@ public interface Idao {
 
 	public void associerCarteCompte(Carte carte, CompteCourant compte);
 
-	public void associerCompteClient(Client client, Compte compte);
-
-	public void associerConseillerClient(Conseiller conseiller, Client client);
-
 	public int modifierClient(Client client, Coordonnees coor);
 
 	public Collection<Client> listerClients(Conseiller cons);
@@ -45,5 +41,7 @@ public interface Idao {
 	public void ajoutSolde(Compte c, double montant);
 
 	public void retraitSolde(Compte c, double montant);
+
+	public void associerConseillerClient(Conseiller conseiller, Client client);
 
 }

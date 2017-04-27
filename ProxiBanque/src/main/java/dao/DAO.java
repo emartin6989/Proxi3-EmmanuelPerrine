@@ -86,20 +86,6 @@ public class DAO implements Idao {
 		em.close();
 	}
 
-	@Override
-	public void associerCompteClient(Client client, Compte compte) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		Collection<Compte> listeComptes = client.getComptes();
-		// On réalise l'association Client - Compte épargne
-		listeComptes.add(compte);
-		// On réalise l'association Compte épargne - Client
-		compte.setClient(client);
-		em.merge(compte);
-		tx.commit();
-		em.close();
-	}
 
 	@Override
 	public void associerConseillerClient(Conseiller conseiller, Client client) {
@@ -264,5 +250,6 @@ public class DAO implements Idao {
 		em.close();
 		return cve;
 	}
+
 
 }
