@@ -21,6 +21,7 @@ public interface IConseillerService {
 	public Carte creerCarteVisaElectron(CompteCourant compte, CarteVisaElectron cve);
 
 	public int modifierClient(Client client, Coordonnees coor);
+	public int modifierCompte(Compte c);
 	
 
 	public Collection<Client> listerClients(Conseiller cons);
@@ -35,7 +36,7 @@ public interface IConseillerService {
 	
 	public Client lireInfoClient(int idClient);
 	
-	
+	public void supprimerCompte(Compte c);
 	
 
 	

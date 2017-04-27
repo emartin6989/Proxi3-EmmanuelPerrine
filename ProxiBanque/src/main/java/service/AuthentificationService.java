@@ -8,9 +8,9 @@ import metier.Conseiller;
 
 public class AuthentificationService implements IAuthentificationService {
 
-	/*@Inject 
-	private Idao dao;*/
-	Idao dao = new DAO();
+	@Inject 
+	private Idao dao;
+	//Idao dao = new DAO();
 	
 	@Override
 	public Conseiller authentificationConseiller(String login, String mdp) {

@@ -3,22 +3,26 @@ package mbeans;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.annotation.ManagedBean;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import metier.Client;
+import metier.Compte;
 import metier.Conseiller;
 import metier.Coordonnees;
 import metier.Personne;
+import service.ConseillerService;
 import service.IConseillerService;
 
-@ManagedBean
+@Named
 public class ClientBean {
 
 	@Inject
 	private IConseillerService service;
+//	IConseillerService service = new ConseillerService();
 
 	private Client client = new Client();
 	private Collection<Client> clients = new ArrayList<Client>();
@@ -26,6 +30,23 @@ public class ClientBean {
 	private boolean editMode = false;
 	private Conseiller cons = new Conseiller();
 	private Personne personne;
+	private Collection<Compte> comptes = new ArrayList<Compte>();
+
+	
+	
+	/**
+	 * @return the comptes
+	 */
+	public Collection<Compte> getComptes() {
+		return comptes;
+	}
+
+	/**
+	 * @param comptes the comptes to set
+	 */
+	public void setComptes(Collection<Compte> comptes) {
+		this.comptes = comptes;
+	}
 
 	/**
 	 * @return the service
@@ -140,12 +161,15 @@ public class ClientBean {
 		service = conseillerService;
 	}
 
-	
-	
 	public String delete() {
-		service.supprimerClient(client);
+		if(cons.getClients().contains(client)){
+		service.supprimerClient(client);}
+		else{FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage("client",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Vous ne gérez pas ce client", null));
+		}
 		client = new Client();
-		return "menu";
+		return "editerClient";
 	}
 
 	public void maj() {
@@ -158,7 +182,20 @@ public class ClientBean {
 				&& coor.getEmail().equalsIgnoreCase("") && coor.getTelephone().equalsIgnoreCase("")
 				&& coor.getVille().equalsIgnoreCase(""))) {
 			if (editMode == false) {
-				service.creerClient(cons, client, coor);
+				if (cons.getClients().size() < 10) {
+					if (client.getConseiller() != null) {
+						service.creerClient(cons, client, coor);
+					} else {
+						FacesContext context = FacesContext.getCurrentInstance();
+						context.addMessage("client",
+								new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ce client a déjà un conseiller", null));
+					}
+
+				} else {
+					FacesContext context = FacesContext.getCurrentInstance();
+					context.addMessage("client",
+							new FacesMessage(FacesMessage.SEVERITY_ERROR, "Vous avez déjà 10 clients a gérer", null));
+				}
 			} else {
 				service.modifierClient(client, coor);
 				editMode = false;
@@ -166,10 +203,10 @@ public class ClientBean {
 		} else {
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.addMessage("client",
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Veuillez saisir les valeurs non nulles", null));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Veuillez saisir des valeurs non nulles", null));
 		}
 		client = new Client();
-		return "menu";
+		return "editerClient";
 	}
 
 }

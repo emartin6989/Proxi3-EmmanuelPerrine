@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
  *
  */
 @Entity
-// @DiscriminatorValue("CLIENT")
+//@DiscriminatorValue("CLIENT")
 @NamedQuery(name = "Client.findAll", query = "SELECT c FROM Client c where c.conseiller.id = :idcons")
 public class Client extends Personne {
 

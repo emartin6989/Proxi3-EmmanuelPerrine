@@ -43,5 +43,9 @@ public interface Idao {
 	public void retraitSolde(Compte c, double montant);
 
 	public void associerConseillerClient(Conseiller conseiller, Client client);
+	
+	public int modifierCompte(Compte c);
+	
+	public void supprimerCompte(Compte c);
 
 }

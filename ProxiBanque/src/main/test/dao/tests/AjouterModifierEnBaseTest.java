@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import dao.DAO;
 import dao.Idao;
 import metier.Client;
 import metier.CompteCourant;
@@ -18,8 +19,9 @@ import metier.Coordonnees;
 public class AjouterModifierEnBaseTest {
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("bddproxiv3-pu");
 
-	@Inject
-	private Idao dao;
+	/*@Inject
+	private Idao dao;*/
+	Idao dao = new DAO();
 	
 	@Test
 	public void testAjouterCompteCourant() {

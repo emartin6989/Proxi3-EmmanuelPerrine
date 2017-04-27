@@ -251,5 +251,29 @@ public class DAO implements Idao {
 		return cve;
 	}
 
+	@Override
+	public void supprimerCompte(Compte c) {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		em.remove(c);
+		tx.commit();
+		em.close();
+		
+	}
+
+	@Override
+	public int modifierCompte(Compte c) {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+
+		em.merge(c);
+
+		tx.commit();
+		em.close();
+		return (int) c.getNumCompte();
+	}
+
 
 }

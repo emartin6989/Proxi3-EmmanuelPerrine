@@ -18,9 +18,9 @@ import metier.Coordonnees;
 
 public class ConseillerService implements IConseillerService {
 
-	/*@Inject 
-	private Idao dao;*/
-	Idao dao = new DAO();
+	@Inject 
+	private Idao dao;
+	//Idao dao = new DAO();
 
 	@Override
 	public Client creerClient(Conseiller cons, Client c, Coordonnees coor) {
@@ -85,6 +85,17 @@ public class ConseillerService implements IConseillerService {
 	@Override
 	public Client lireInfoClient(int idClient) {
 		return dao.lireInfoClient(idClient);
+	}
+
+	@Override
+	public void supprimerCompte(Compte c) {
+		dao.supprimerCompte(c);
+		
+	}
+
+	@Override
+	public int modifierCompte(Compte c) {
+		return dao.modifierCompte(c);
 	}
 
 	
