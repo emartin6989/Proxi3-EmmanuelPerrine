@@ -145,7 +145,7 @@ public class ClientBean {
 	public String delete() {
 		service.supprimerClient(client);
 		client = new Client();
-		return "index";
+		return "menu";
 	}
 
 	public void maj() {
@@ -169,7 +169,7 @@ public class ClientBean {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Veuillez saisir les valeurs non nulles", null));
 		}
 		client = new Client();
-		return "index";
+		return "menu";
 	}
 
 }
