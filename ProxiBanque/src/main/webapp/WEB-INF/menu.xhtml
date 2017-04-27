@@ -16,10 +16,13 @@
 <ul>
 	<li><h:commandLink value="Accueil" action="/ProxiBanque/"/></li>
 	<!-- renvoit à l'index -->
-	<li><p:outputLabel value="${ empty sessionScope.droits }"> <h:commandLink value="Authentification" action="Authentification"/></p:outputLabel>
-	<p:outputLabel value="${ sessionScope.droits =='CONSEILLER' }"> <h:commandLink value="Deconnexion" action="Authentification?action=deconnecter"/></p:outputLabel></li>
-	<li><p:outputLabel value="${ sessionScope.droits =='CONSEILLER' }"> <h:commandLink value="Liste des clients" action="GestionClient?action=ListerClients"/></p:outputLabel></li>
-	<li><p:outputLabel value="${ sessionScope.droits =='CONSEILLER' }"> <h:commandLink value="Editer un client" action="GestionClient?action=Editer"/></p:outputLabel></li>
+	
+	<li>
+	<h:outputLink value="Authentification" rendered="#{ empty sessionScope.droits}">Authentification</h:outputLink>	
+	<h:outputLink value="Authentification?action=deconnecter" rendered="#{ sessionScope.droits=='CONSEILLER' }">Deconnexion</h:outputLink>	</li>
+	
+	<h:outputLink value="GestionClient?action=ListerClients" rendered="#{sessionScope.droits =='CONSEILLER'}"><li>Liste des clients</li></h:outputLink>
+	<h:outputLink value="GestionClient?action=Editer" rendered="#{ sessionScope.droits =='CONSEILLER'}"><li>Editer un client</li></h:outputLink>
 </ul>
 </h:form>
 </p:panel>
