@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import metier.Client;
+import metier.Conseiller;
 import metier.Coordonnees;
 import service.IConseillerService;
 
@@ -18,6 +19,8 @@ public class ClientBean {
 	private Client client = new Client();
 	private Coordonnees coor = new Coordonnees();
 	private boolean editMode = false;
+	private Conseiller cons = new Conseiller();
+	
 	/**
 	 * @return the client
 	 */
@@ -67,7 +70,7 @@ public class ClientBean {
 	public String add() {
 		if (!(client.getNom().equalsIgnoreCase("") && client.getPrenom().equalsIgnoreCase("") && coor.getAdresse().equalsIgnoreCase("")&& coor.getCp().equalsIgnoreCase("")&& coor.getEmail().equalsIgnoreCase("")&& coor.getTelephone().equalsIgnoreCase("")&& coor.getVille().equalsIgnoreCase(""))) {
 			if (editMode == false) {
-				service.creerClient(client, coor);
+				service.creerClient(cons, client, coor);
 			} else {
 				service.modifierClient(client, coor);
 				editMode = false;

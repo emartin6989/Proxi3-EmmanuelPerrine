@@ -21,8 +21,10 @@ public class ConseillerService implements IConseillerService {
 	private Idao dao;
 
 	@Override
-	public Client creerClient(Client c, Coordonnees coor) {
-		return dao.creerClient(c, coor);
+	public Client creerClient(Conseiller cons, Client c, Coordonnees coor) {
+		Client client = dao.creerClient(c, coor);
+		dao.associerConseillerClient(cons, client);
+		return client;
 	}
 
 	@Override
@@ -34,24 +36,21 @@ public class ConseillerService implements IConseillerService {
 	public CompteEpargne creerCompteEpargne(Client c, CompteEpargne compte) {
 		return dao.creerCompteEpargne(c, compte);
 	}
-
+	
 	@Override
-	public void associerCarteCompte(Carte carte, CompteCourant compte) {
+	public Carte creerCarteVisaPremier(CompteCourant compte, CarteVisaPremier cvp) {
+		Carte carte = dao.creerCarteVisaPremier(cvp);
 		dao.associerCarteCompte(carte, compte);
-		
+		return carte;
 	}
 
 	@Override
-	public void associerCompteClient(Client client, Compte compte) {
-		dao.associerCompteClient(client, compte);
-		
+	public Carte creerCarteVisaElectron(CompteCourant compte, CarteVisaElectron cve) {
+		Carte carte = dao.creerCarteVisaElectron(cve);
+		dao.associerCarteCompte(carte, compte);
+		return carte;
 	}
 
-	@Override
-	public void associerConseillerClient(Conseiller conseiller, Client client) {
-		dao.associerConseillerClient(conseiller, client);
-		
-	}
 
 	@Override
 	public int modifierClient(Client client, Coordonnees coor) {
@@ -86,15 +85,7 @@ public class ConseillerService implements IConseillerService {
 		return dao.lireInfoClient(idClient);
 	}
 
-	@Override
-	public Carte creerCarteVisaPremier(CarteVisaPremier cvp) {
-		return dao.creerCarteVisaPremier(cvp);
-	}
-
-	@Override
-	public Carte creerCarteVisaElectron(CarteVisaElectron cve) {
-		return dao.creerCarteVisaElectron(cve);
-	}
+	
 
 
 }

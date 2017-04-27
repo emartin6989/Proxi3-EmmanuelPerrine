@@ -14,16 +14,11 @@ import metier.Coordonnees;
 
 public interface IConseillerService {
 	
-	public Client creerClient(Client c, Coordonnees coor);
+	public Client creerClient(Conseiller cons, Client c, Coordonnees coor);
 	public CompteCourant creerCompteCourant(Client c, CompteCourant compte);
 	public CompteEpargne creerCompteEpargne(Client c, CompteEpargne compte);
-	public Carte creerCarteVisaPremier(CarteVisaPremier cvp);
-	public Carte creerCarteVisaElectron(CarteVisaElectron cve);
-	
-	public void associerCarteCompte(Carte carte, CompteCourant compte);
-	public void associerCompteClient(Client client, Compte compte);
-	public void associerConseillerClient(Conseiller conseiller, Client client);
-	
+	public Carte creerCarteVisaPremier(CompteCourant compte, CarteVisaPremier cvp);
+	public Carte creerCarteVisaElectron(CompteCourant compte, CarteVisaElectron cve);
 
 	public int modifierClient(Client client, Coordonnees coor);
 	
