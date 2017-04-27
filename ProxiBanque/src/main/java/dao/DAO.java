@@ -49,7 +49,7 @@ public class DAO implements Idao {
 		compte.setClient(c);
 
 		em.persist(c);
-
+		em.persist(compte);
 		tx.commit();
 		em.close();
 		return compte;
