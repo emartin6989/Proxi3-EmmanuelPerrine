@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link type="text/css" rel="stylesheet"
+		href="themes/hot-sneaks/skin.css" />
+</h:head>
+
+<h:body>
+	<p:panel>
+		<div class="container-fluid">
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 titre">
+					<ui:include src="/WEB-INF/titre.xhtml" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 connection">
+					<ui:include src="/WEB-INF/connexioninf.xhtml" />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 menu">
+					<ui:include src="/WEB-INF/menu.xhtml" />
+				</div>
+
+				<h2>Virement entre les comptes du client
+					n°#{clientBean.personne.id}, #{ clientBean.personne.prenom}
+					#{clientBean.personne.nom} :</h2>
+				<br />
+				<h:form>
+					<h:messages styleClass="error" />
+					<h:panelGrid columns="3" value="#{clientBean.client.comptes}"
+						var="leCompte" rule="all">
+						<f:facet name="header">
+							<h:outputText value="Compte à débiter" />
+						</f:facet>
+						<h:outputLabel value="Selectionner un compte :" />
+						<h:inputText type="radio" name="compteADebiter"
+							id="compteADebiter" value="#{leCompte.numCompte}" required="true"
+							label="Compte à débiter"
+							requiredMessage="Le champs Compte à débiter est vide" />
+						<h:message for="compteADebiter" errorClass="error"></h:message>
+						<h:outputLabel value="N° Compte :" />
+						<h:outputText value="#{leCompte.numCompte}" />
+						<h:outputLabel value="Solde :" />
+						<h:outputText value="#{leCompte.solde}" />
+					</h:panelGrid>
+					<h:messages styleClass="error" />
+					<h:panelGrid columns="3" value="#{clientBean.client.comptes}"
+						var="leCompte" rule="all">
+						<f:facet name="header">
+							<h:outputText value="Compte à créditer" />
+						</f:facet>
+						<h:outputLabel value="Selectionner un compte :" />
+						<h:inputText type="radio" name="compteACrediter"
+							id="compteACrediter" value="#{leCompte.numCompte}"
+							required="true" label="Compte à crébiter"
+							requiredMessage="Le champs Compte à créditer est vide" />
+						<h:message for="compteACrediter" errorClass="error"></h:message>
+						<h:outputLabel value="N° Compte :" />
+						<h:outputText value="#{leCompte.numCompte}" />
+						<h:outputLabel value="Solde :" />
+						<h:outputText value="#{leCompte.solde}" />
+					</h:panelGrid>
+					<h:commandButton type="submit" value="Virer"
+						action="#{conseillerBean.virement}" />
+				</h:form>
+
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 footer">
+				<ui:include src="/WEB-INF/footer.xhtml" />
+			</div>
+		</div>
+	</p:panel>
+</h:body>
+</h:html>

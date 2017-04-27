@@ -39,15 +39,16 @@
 
 					<div class="col-xs-12 col-sm-8 col-md-9 col-lg-9 content">
 
-						<h:outputLabel rendered="#{ sessionScope.droits !='CONSEILLER' }">
+						<h:outputText rendered="#{ sessionScope.droits !='CONSEILLER' }">
 							<p>Vous n'avez pas les droits nécessaires pour cette action</p>
 							<p>
 								<h:commandLink value="Se déconnecter"
 									action="Authentification?action=deconnecter" />
 							</p>
-						</h:outputLabel>
+						</h:outputText>
 
-						<h:outputLabel rendered="#{ sessionScope.droits =='CONSEILLER' }">
+						<h:outputText rendered="#{ sessionScope.droits =='CONSEILLER' }">
+
 							<h:messages styleClass="error" />
 							<h:panelGrid columns="3">
 								<f:facet name="header">
@@ -64,27 +65,27 @@
 									requiredMessage="Le champs prenom est vide" />
 								<h:message for="prenom" errorClass="error"></h:message>
 								<h:outputLabel value="Adresse :" />
-								<h:inputText value="#{clientBean.coordonnees.adresse}"
+								<h:inputText value="#{clientBean.coor.adresse}"
 									id="adresse" required="true" label="adresse"
 									requiredMessage="Le champs adresse est vide" />
 								<h:message for="adresse" errorClass="error"></h:message>
 								<h:outputLabel value="Ville :" />
-								<h:inputText value="#{clientBean.coordonnees.ville}" id="ville"
+								<h:inputText value="#{clientBean.coor.ville}" id="ville"
 									required="true" label="ville"
 									requiredMessage="Le champs ville est vide" />
 								<h:message for="ville" errorClass="error"></h:message>
 								<h:outputLabel value="Code postal :" />
-								<h:inputText value="#{clientBean.coordonnees.cp}" id="cp"
+								<h:inputText value="#{clientBean.coor.cp}" id="cp"
 									required="true" label="code postal"
 									requiredMessage="Le champs code postal est vide" />
 								<h:message for="cp" errorClass="error"></h:message>
 								<h:outputLabel value="E-mail :" />
-								<h:inputText value="#{clientBean.coordonnees.email}" id="email"
+								<h:inputText value="#{clientBean.coor.email}" id="email"
 									required="true" label="email"
 									requiredMessage="Le champs email est vide" />
 								<h:message for="email" errorClass="error"></h:message>
 								<h:outputLabel value="Téléphone :" />
-								<h:inputText value="#{clientBean.coordonnees.telephone}"
+								<h:inputText value="#{clientBean.coor.telephone}"
 									id="telephone" required="true" label="telephone"
 									requiredMessage="Le champs telephone est vide" />
 								<h:message for="telephone" errorClass="error"></h:message>
@@ -93,67 +94,68 @@
 								action="#{clientBean.add}" />
 
 
-							<H2>Liste des Clients</H2>
+							<h2>Liste des Clients</h2>
 							<h:dataTable value="#{clientBean.clients}" var="leClient"
 								border="1" width="200" cellpadding="5">
-								<div align="center">
-									<h:column>
-										<f:facet name="header">Id</f:facet>    				
+
+								<h:column>
+									<f:facet name="header">Id</f:facet>    				
                #{leClient.personne.id}
             </h:column>
-									<h:column>
-										<f:facet name="header">Nom</f:facet>    				
+								<h:column>
+									<f:facet name="header">Nom</f:facet>    				
                #{leClient.personne.nom}
             </h:column>
-									<h:column>
-										<f:facet name="header">Adresse</f:facet>
+								<h:column>
+									<f:facet name="header">Adresse</f:facet>
                #{leClient.coordonnees.adresse}
             </h:column>
-									<h:column>
-										<f:facet name="header">Ville</f:facet>
+								<h:column>
+									<f:facet name="header">Ville</f:facet>
                #{leClient.coordonnees.ville}
             </h:column>
-									<h:column>
-										<f:facet name="header">Code Postal</f:facet>
+								<h:column>
+									<f:facet name="header">Code Postal</f:facet>
                #{leClient.coordonnees.cp}
             </h:column>
-									<h:column>
-										<f:facet name="header">E-mail</f:facet>
+								<h:column>
+									<f:facet name="header">E-mail</f:facet>
                #{leClient.coordonnees.email}
             </h:column>
-									<h:column>
-										<f:facet name="header">Téléphone</f:facet>
+								<h:column>
+									<f:facet name="header">Téléphone</f:facet>
                #{leClient.coordonnees.telephone}
             </h:column>
-									<h:column>
-										<f:facet name="header">Supprimer</f:facet>
-										<h:commandLink update="@form" value="Supprimer"
-											action="#{clientBean.delete}">
-											<f:setPropertyActionListener value="#{leClient}"
-												target="#{clientBean.client}"></f:setPropertyActionListener>
-										</h:commandLink>
-									</h:column>
-									<h:column>
-										<f:facet name="header">Modifier</f:facet>
-										<h:commandLink update="@form" value="Modifier"
-											action="#{clientBean.maj}">
-											<f:setPropertyActionListener value="#{leClient}"
-												target="#{clientBean.client}"></f:setPropertyActionListener>
-										</h:commandLink>
-									</h:column>
+								<h:column>
 
-									<h:outputText rendered="#{editMode==true}">
-										<p>Le client a été modifié.</p>
-									</h:outputText>
-
-								</div>
-								<div class="row">
-									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 footer">
-										<ui:include src="/WEB-INF/footer.xhtml" />
-									</div>
-								</div>
+									<f:facet name="header">Supprimer</f:facet>
+									<h:commandLink update="@form" value="Supprimer"
+										action="#{clientBean.delete}">
+										<f:setPropertyActionListener value="#{leClient}"
+											target="#{clientBean.client}"></f:setPropertyActionListener>
+									</h:commandLink>
+								</h:column>
+								<h:column>
+									<f:facet name="header">Modifier</f:facet>
+									<h:commandLink update="@form" value="Modifier"
+										action="#{clientBean.maj}">
+										<f:setPropertyActionListener value="#{leClient}"
+											target="#{clientBean.client}"></f:setPropertyActionListener>
+									</h:commandLink>
+								</h:column>
+							</h:dataTable>
+							<h:outputText rendered="#{editMode==true}">
+								<p>Le client a été modifié.</p>
+							</h:outputText>
+						</h:outputText>
+					</div>
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 footer">
+							<ui:include src="/WEB-INF/footer.xhtml" />
+						</div>
 					</div>
 				</div>
+			</div>
 		</h:form>
 	</p:panel>
 </h:body>

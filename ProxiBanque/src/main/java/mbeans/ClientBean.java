@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import metier.Client;
 import metier.Conseiller;
 import metier.Coordonnees;
+import metier.Personne;
 import service.IConseillerService;
 
 @ManagedBean
@@ -24,6 +25,7 @@ public class ClientBean {
 	private Coordonnees coor = new Coordonnees();
 	private boolean editMode = false;
 	private Conseiller cons = new Conseiller();
+	private Personne personne;
 
 	/**
 	 * @return the service
@@ -100,6 +102,14 @@ public class ClientBean {
 		this.client = client;
 	}
 
+	public Personne getPersonne() {
+		return personne;
+	}
+
+	public void setPersonne(Personne personne) {
+		this.personne = personne;
+	}
+
 	/**
 	 * @return the editMode
 	 */
@@ -130,9 +140,12 @@ public class ClientBean {
 		service = conseillerService;
 	}
 
-	public void delete() {
+	
+	
+	public String delete() {
 		service.supprimerClient(client);
 		client = new Client();
+		return "index";
 	}
 
 	public void maj() {
