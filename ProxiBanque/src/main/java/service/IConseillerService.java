@@ -33,7 +33,7 @@ public interface IConseillerService {
 	public void effectuerVirement(Compte compteEmetteur, Compte compteRecepteur, double montant);
 
 
-	public void supprimerClient(Client c, int id) ;
+	public void supprimerClient(Client c) ;
 
 	
 	public String lireInfoClient(Client client);

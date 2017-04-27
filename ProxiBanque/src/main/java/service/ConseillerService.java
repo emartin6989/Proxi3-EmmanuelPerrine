@@ -81,7 +81,7 @@ public class ConseillerService implements IConseillerService {
 	}
 
 	@Override
-	public void supprimerClient(Client c, int id) {
+	public void supprimerClient(Client c) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -212,17 +212,11 @@ public class DAO implements Idao {
 	}
 
 	@Override
-	public Client lireInfoClient(int id) {
+	public Client lireInfoClient(int idClient) {
 		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		Client c = new Client();
-		Query req = em.createNamedQuery("SELECT cl FROM Client where client.id = :idclient");
-		req.setParameter("idclient", id);
-		c = (Client) req.getSingleResult();
-		tx.commit();
+		Client client = em.find(Client.class, idClient);
 		em.close();
-		return c;
+		return client;
 	}
 
 	@Override
