@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link type="text/css" rel="stylesheet" href="themes/hot-sneaks/skin.css" />
+</h:head>
+
+<h:body>
+<p:panel>
+<h:form>
+<ul>
+	<li><h:commandLink value="Accueil" action="/ProxiBanque/"/></li>
+	<!-- renvoit à l'index -->
+	<li><p:outputLabel value="${ empty sessionScope.droits }"> <h:commandLink value="Authentification" action="Authentification"/></p:outputLabel>
+	<p:outputLabel value="${ sessionScope.droits =='CONSEILLER' }"> <h:commandLink value="Deconnexion" action="Authentification?action=deconnecter"/></p:outputLabel></li>
+	<li><p:outputLabel value="${ sessionScope.droits =='CONSEILLER' }"> <h:commandLink value="Liste des clients" action="GestionClient?action=ListerClients"/></p:outputLabel></li>
+	<li><p:outputLabel value="${ sessionScope.droits =='CONSEILLER' }"> <h:commandLink value="Editer un client" action="GestionClient?action=Editer"/></p:outputLabel></li>
+</ul>
+</h:form>
+</p:panel>
+</h:body>
+</h:html>
