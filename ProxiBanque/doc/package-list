@@ -1,0 +1,7 @@
+dao
+dao.tests
+mbeans
+metier
+service
+service.exceptions
+tests
