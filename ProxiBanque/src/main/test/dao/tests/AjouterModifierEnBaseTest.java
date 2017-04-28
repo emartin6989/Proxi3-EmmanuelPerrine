@@ -32,7 +32,7 @@ public class AjouterModifierEnBaseTest {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		Client cl= em.find(Client.class, 1);
+		Client cl= em.find(Client.class, 2);
 		Assert.assertEquals(cc, dao.creerCompteCourant(cl, cc));
 		em.close();
 	}
@@ -43,15 +43,16 @@ public class AjouterModifierEnBaseTest {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		Client cl= em.find(Client.class, 1);
-		coor.setAdresse("bla");
+		Client cl= em.find(Client.class, 2);
+		coor.setAdresse("24 rue de la bienveillance");
 		cl.setCoordonnees(coor);
 		//on test que une ligne est modifiée
-		Assert.assertEquals(1, dao.modifierClient(cl, coor));
+		Assert.assertEquals(2, dao.modifierClient(cl, coor));
 		em.close();
 
 	}
-	@Ignore
+
+
 	@Test
 	public void testmodifierClientInconnu() {
 		

@@ -31,9 +31,7 @@
 					<ui:include src="/WEB-INF/menu.xhtml" />
 				</div>
 
-				<h2>Virement entre les comptes du client
-					n°#{clientBean.client.id}, #{ clientBean.client.prenom}
-					#{clientBean.client.nom} :</h2>
+				<h2>Virement entre les comptes </h2>
 				<br />
 				<h:form>
 					<h:messages styleClass="error" />
@@ -73,6 +71,7 @@
 						<h:inputText value="montant" id="montant" />
 						<h:commandButton type="submit" value="Virer"
 							action="#{conseillerBean.virement(compteADebiter,compteACrediter,montant)}" />
+							</h:panelGrid>
 				</h:form>
 
 			</div>

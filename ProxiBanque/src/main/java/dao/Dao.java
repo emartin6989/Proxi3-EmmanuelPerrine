@@ -140,7 +140,7 @@ public class Dao implements Idao {
 		tx.begin();
 
 		List<Compte> co = new ArrayList<Compte>();
-		Query req = em.createQuery("SELECT co FROM Compte co WHERE compte.client.id= :idclient");
+		Query req = em.createQuery("SELECT co FROM Compte co WHERE client_id= :idclient");
 		req.setParameter("idclient", c.getId());
 		co = req.getResultList();
 
@@ -217,8 +217,8 @@ public class Dao implements Idao {
 		Query req = em.createQuery("SELECT cons FROM Conseiller cons where cons.login = :login and cons.mdp = :mdp");
 		req.setParameter("login", login);
 		req.setParameter("mdp", mdp);
-		if (req.getSingleResult() != null) {
-			cons = (Conseiller) req.getSingleResult();
+		if (req.getSingleResult()!=null) {
+			cons =  (Conseiller)req.getSingleResult();
 			return cons;
 		}
 		tx.commit();

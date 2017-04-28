@@ -33,40 +33,48 @@
 
 				<div class="col-xs-12 col-sm-8 col-md-9 col-lg-9 content">
 
-					<h2>Liste des comptes du client n°#{clientBean.personne.id}, #{
-						clientBean.personne.prenom} #{clientBean.personne.nom} :</h2>
+					<h2>Liste des comptes du client n°#{clientBean.client.id}, #{
+						clientBean.client.prenom} #{clientBean.client.nom} :</h2>
 					<br />
-					<h:outputText rendered="#{!empty clientBean.client.comptes}">
-					
-						<h:dataTable value="#{clientBean.client.comptes}" var="leCompte" rule="all"
-								border="1" width="200" cellpadding="5">
+					<!--  <h:outputText rendered="#{!empty clientBean.client.comptes}"> -->
+<h:form>
+					<h:dataTable value="#{clientBean.client.comptes}" var="leCompte"
+						rule="all" border="1" width="200" cellpadding="5">
 
-								<h:column>
-									<f:facet name="header">N° Compte</f:facet>    				
+						<h:column>
+							<f:facet name="header">N° Compte</f:facet>    				
                #{leCompte.numCompte}
             </h:column>
-								<h:column>
-									<f:facet name="header">Solde</f:facet>    				
+						<h:column>
+							<f:facet name="header">Solde</f:facet>    				
                 #{leCompte.solde}
             </h:column>
-            <h:outputText rendered="#{!empty leCompte.decouvert}">
-								<h:column>
-									<f:facet name="header">Découvert autorisé</f:facet>
+						<h:outputText rendered="#{leCompte == compteCourant}">
+							<h:column>
+								<f:facet name="header">Découvert autorisé</f:facet>
                #{leCompte.decouvert}
             </h:column>
-            </h:outputText>
-              <h:outputText rendered="#{!empty leCompte.tauxRemuneration}">
-								<h:column>
-									<f:facet name="header">Découvert autorisé</f:facet>
+						</h:outputText>
+						<h:outputText rendered="#{!empty leCompte.tauxRemuneration}">
+							<h:column>
+								<f:facet name="header">Découvert autorisé</f:facet>
                #{leCompte.tauxRemuneration}
             </h:column>
-            </h:outputText>
-								<h:column>
-									<f:facet name="header">Date d'ouverture</f:facet>    				
+						</h:outputText>
+						<h:column>
+							<f:facet name="header">Date d'ouverture</f:facet>    				
                 #{leCompte.dateOuverture}
             </h:column>
-            </h:dataTable>
-            </h:outputText>
+						
+							<h:column>
+								<f:facet name="header">Virement</f:facet>
+								<h:commandLink update="@form" value="Virer"
+									action="virementCompteACompte">
+								</h:commandLink>
+							</h:column>
+						
+					</h:dataTable>
+</h:form>
 
 				</div>
 			</div>
