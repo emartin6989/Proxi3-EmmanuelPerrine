@@ -82,3 +82,6 @@ Login : moi, Mot de passe : moi
 
 => Pour consulter la documentation (javadoc) de l'application, double-cliquez sur le fichier index.html se trouvant dans le repertoire "doc" 
 livré avec le dossier ProxiBanque.  
+
+
+ATtention la méthode virement n'est pas fonctionnelle !

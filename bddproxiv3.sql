@@ -32,6 +32,13 @@ CREATE TABLE `agence` (
   `nomAgence` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Contenu de la table `agence`
+--
+
+INSERT INTO `agence` (`Agence_id`, `dateCreation`, `nomAgence`) VALUES
+(1, 'aujourd\'hui', 'Proxi1');
+
 -- --------------------------------------------------------
 
 --
@@ -64,6 +71,9 @@ CREATE TABLE `compte` (
 
 -- --------------------------------------------------------
 
+--
+-- Structure de la table `coordonnees`
+--
 
 CREATE TABLE `coordonnees` (
   `Coordonnees_id` int(11) NOT NULL,
@@ -108,7 +118,6 @@ CREATE TABLE `personne` (
   `AGENCE_ID` int(11) DEFAULT NULL,
   `agence_Agence_id` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
 
 
 -- --------------------------------------------------------
