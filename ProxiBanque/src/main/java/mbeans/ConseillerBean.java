@@ -1,9 +1,11 @@
 package mbeans;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-
 
 import metier.Client;
 import metier.Compte;
@@ -18,19 +20,18 @@ import service.IConseillerService;
 @ManagedBean
 public class ConseillerBean {
 
-	
 	// @Inject
-	 private IAuthentificationService service= new AuthentificationService();
+	private IAuthentificationService service = new AuthentificationService();
 	// @Inject
-	 private IConseillerService cs= new ConseillerService();
-	 
-	//IAuthentificationService service = new AuthentificationService();
-	//IConseillerService cs = new ConseillerService();
+	private IConseillerService cs = new ConseillerService();
+
+	// IAuthentificationService service = new AuthentificationService();
+	// IConseillerService cs = new ConseillerService();
 
 	private Conseiller conseiller = new Conseiller();
 	private CompteCourant cCourant = new CompteCourant();
 	private CompteEpargne cEpargne = new CompteEpargne();
-
+	private Collection<Client> clients;
 	/**
 	 * @return the cs
 	 */
@@ -105,6 +106,16 @@ public class ConseillerBean {
 	public void setConseiller(Conseiller conseiller) {
 		this.conseiller = conseiller;
 	}
+	
+	
+
+	public Collection<Client> getClients() {
+		return clients;
+	}
+
+	public void setClients(Collection<Client> clients) {
+		this.clients = clients;
+	}
 
 	public String authentification() {
 		if (!(conseiller.getLogin().equalsIgnoreCase("") && conseiller.getLogin().equalsIgnoreCase(""))) {
@@ -117,13 +128,13 @@ public class ConseillerBean {
 				FacesContext context = FacesContext.getCurrentInstance();
 				context.addMessage("conseiller", new FacesMessage(FacesMessage.SEVERITY_ERROR,
 						"Identifiants et/ou mot de passe inexistants", null));
-				return "authentification";
+				return "index";
 			}
 		} else {
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.addMessage("conseiller",
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Veuillez saisir des valeurs non nulles", null));
-			return "authentification";
+			return "index";
 		}
 
 	}
@@ -131,12 +142,17 @@ public class ConseillerBean {
 	public String virement(Compte compteEmetteur, Compte compteRecepteur, double montant) {
 		if ((compteEmetteur instanceof CompteCourant && cCourant.getSolde() <= (0 - cCourant.getDecouvert()))
 				|| (compteEmetteur instanceof CompteEpargne && cEpargne.getSolde() <= 0)) {
-			
+
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.addMessage("compte", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Solde insuffisant", null));
 		} else {
 			cs.effectuerVirement(compteEmetteur, compteRecepteur, montant);
 		}
 		return "virementCompteACompte";
+	}
+	
+	public Collection<Client> listerClients() {
+		clients = cs.listerClients(conseiller);
+		return clients;
 	}
 }

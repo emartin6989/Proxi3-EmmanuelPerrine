@@ -26,7 +26,6 @@ public abstract class Compte {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Compte_id")
-	private long id;
 	private long numCompte;
 	private double solde;
 	private Date dateOuverture;
@@ -37,22 +36,7 @@ public abstract class Compte {
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	private Agence agence;
 
-	/**
-	 * Getter de l'identifiant du compte
-	 * @return Identifiant du compte
-	 */
-	public long getId() {
-		return id;
-	}
-
-	/**
-	 * Setter de l'identifiant du compte
-	 * @param id Identifiant du compte
-	 */
-	public void setId(long id) {
-		this.id = id;
-	}
-
+	
 	/**
 	 * Getter du numéro de compte
 	 * @return Numéro de compte
@@ -135,7 +119,7 @@ public abstract class Compte {
 
 	@Override
 	public String toString() {
-		return "Compte [id=" + id + ", solde=" + solde + ", dateOuverture=" + dateOuverture + ", carte=" + carte + "]";
+		return "Compte [Numéro de compte=" + numCompte + ", solde=" + solde + ", dateOuverture=" + dateOuverture + ", carte=" + carte + "]";
 	}
 
 }

@@ -33,7 +33,7 @@ public class CompteCourant extends Compte {
 
 	@Override
 	public String toString() {
-		return "CompteCourant [getId()=" + getId() + ", getSolde()=" + getSolde() + "]";
+		return "CompteCourant [getNumCompte()=" + getNumCompte() + ", getSolde()=" + getSolde() + "]";
 	}
 
 	

@@ -32,7 +32,7 @@ public class CompteEpargne extends Compte {
 
 	@Override
 	public String toString() {
-		return "CompteEpargne [getId()=" + getId() + ", getSolde()=" + getSolde() + "]";
+		return "CompteEpargne [getNumCompte()=" + getNumCompte() + ", getSolde()=" + getSolde() + "]";
 	}
 
 	

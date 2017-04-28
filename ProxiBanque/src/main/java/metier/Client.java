@@ -27,6 +27,26 @@ public class Client extends Personne {
 	@OneToMany(mappedBy = "client")
 	private Collection<Placement> placements;
 
+	
+	/**
+	 * Getter de l'attribut id
+	 * 
+	 * @return the id Id de la personne
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * Seter de l'attribut id
+	 * 
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	/**
 	 * @return the entreprise
 	 */
@@ -86,6 +106,62 @@ public class Client extends Personne {
 	public void setPlacements(Collection<Placement> placements) {
 		this.placements = placements;
 	}
+	
+	/**
+	 * Geter de l'attribut nom
+	 * 
+	 * @return the nom nom de la personne
+	 */
+	public String getNom() {
+		return nom;
+	}
+
+	/**
+	 * Seter de l'attribut nom
+	 * 
+	 * @param nom
+	 *            the nom to set nom de la personne
+	 */
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	/**
+	 * Getter de l'attribut prenom
+	 * 
+	 * @return the prenom prenom de la personne
+	 */
+	public String getPrenom() {
+		return prenom;
+	}
+
+	/**
+	 * Setter de l'attribut prenom
+	 * 
+	 * @param prenom
+	 *            the prenom to set prenom de la personne
+	 */
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	/**
+	 * Getter de l'attribut coordonnees
+	 * 
+	 * @return the coordonnees coordonnées de la personne
+	 */
+	public Coordonnees getCoordonnees() {
+		return coordonnees;
+	}
+
+	/**
+	 * @param coordonnees
+	 *            the coordonnees to set
+	 */
+	public void setCoordonnees(Coordonnees coordonnees) {
+		this.coordonnees = coordonnees;
+	}
+
 
 	@Override
 	public String toString() {

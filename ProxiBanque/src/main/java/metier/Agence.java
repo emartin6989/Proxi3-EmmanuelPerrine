@@ -22,7 +22,7 @@ public class Agence {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Agence_id")
 	private int id;
-	private String numAgence;
+	private String nomAgence;
 	private String dateCreation;
 	@OneToOne(mappedBy="agence")
 	private Gerant gerant;
@@ -51,16 +51,16 @@ public class Agence {
 	 * Getter du numéro de l'agence
 	 * @return Numéro de l'agence
 	 */
-	public String getNumAgence() {
-		return numAgence;
+	public String getNomAgence() {
+		return nomAgence;
 	}
 
 	/**
 	 * Setter du numéro de l'agence
 	 * @param numAgence Numéro de l'agence
 	 */
-	public void setNumAgence(String numAgence) {
-		this.numAgence = numAgence;
+	public void setNomAgence(String numAgence) {
+		this.nomAgence = nomAgence;
 	}
 
 	/**
@@ -131,7 +131,7 @@ public class Agence {
 
 	@Override
 	public String toString() {
-		return "Agence [id=" + id + ", numAgence=" + numAgence + ", dateCreation=" + dateCreation + ", gerant=" + gerant
+		return "Agence [id=" + id + ", numAgence=" + nomAgence + ", dateCreation=" + dateCreation + ", gerant=" + gerant
 				+ ", conseillers=" + conseillers + "]";
 	}
 

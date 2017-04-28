@@ -95,16 +95,20 @@
 
 
 							<h2>Liste des Clients</h2>
-							<h:dataTable value="#{clientBean.clients}" var="leClient"
+							<h:dataTable value="#{conseillerBean.clients}" var="leClient" rule="all"
 								border="1" width="200" cellpadding="5">
 
 								<h:column>
 									<f:facet name="header">Id</f:facet>    				
-               #{leClient.personne.id}
+               #{leClient.id}
             </h:column>
 								<h:column>
 									<f:facet name="header">Nom</f:facet>    				
-               #{leClient.personne.nom}
+               #{leClient.nom}
+            </h:column>
+            							<h:column>
+									<f:facet name="header">Prenom</f:facet>    				
+               #{leClient.prenom}
             </h:column>
 								<h:column>
 									<f:facet name="header">Adresse</f:facet>

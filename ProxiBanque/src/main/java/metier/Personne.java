@@ -21,11 +21,11 @@ public abstract class Personne {
 
 	@Id
 	//@GeneratedValue(strategy = GenerationType.TABLE)
-	private int id;
-	private String nom;
-	private String prenom;
+	protected int id;
+	protected String nom;
+	protected String prenom;
 	@ManyToOne(cascade = CascadeType.PERSIST)
-	private Coordonnees coordonnees;
+	protected Coordonnees coordonnees;
 	protected String login = null;
 	protected String mdp = null;
 
