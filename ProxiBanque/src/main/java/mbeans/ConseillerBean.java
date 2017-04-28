@@ -1,10 +1,10 @@
 package mbeans;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import metier.Client;
@@ -18,6 +18,7 @@ import service.IAuthentificationService;
 import service.IConseillerService;
 
 @ManagedBean
+@SessionScoped
 public class ConseillerBean {
 
 	// @Inject
@@ -151,8 +152,9 @@ public class ConseillerBean {
 		return "virementCompteACompte";
 	}
 	
-	public Collection<Client> listerClients() {
-		clients = cs.listerClients(conseiller);
-		return clients;
+	public String listerClients() {
+		Conseiller conseillercourant=this.conseiller;
+		clients = cs.listerClients(conseillercourant);
+		return "#{conseillerBean.clients}";
 	}
 }

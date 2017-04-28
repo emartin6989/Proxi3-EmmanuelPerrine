@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import metier.Client;
@@ -16,6 +17,7 @@ import service.ConseillerService;
 import service.IConseillerService;
 
 @ManagedBean
+@SessionScoped
 public class ClientBean {
 
 	

@@ -55,12 +55,12 @@
 									<h:outputText value="Modifier informations client" />
 								</f:facet>
 								<h:outputLabel value="Nom :" />
-								<h:inputText value="#{clientBean.personne.nom}" id="nom"
+								<h:inputText value="#{clientBean.client.nom}" id="nom"
 									required="true" label="nom"
 									requiredMessage="Le champs nom est vide" />
 								<h:message for="nom" errorClass="error"></h:message>
 								<h:outputLabel value="Prénom :" />
-								<h:inputText value="#{clientBean.personne.prenom}" id="prenom"
+								<h:inputText value="#{clientBean.client.prenom}" id="prenom"
 									required="true" label="prenom"
 									requiredMessage="Le champs prenom est vide" />
 								<h:message for="prenom" errorClass="error"></h:message>
@@ -95,13 +95,10 @@
 
 
 							<h2>Liste des Clients</h2>
-							<h:dataTable value="#{conseillerBean.clients}" var="leClient" rule="all"
+							<h:dataTable value="#{conseillerBean.conseiller.clients}" var="leClient" rule="all"
 								border="1" width="200" cellpadding="5">
 
-								<h:column>
-									<f:facet name="header">Id</f:facet>    				
-               #{leClient.id}
-            </h:column>
+					
 								<h:column>
 									<f:facet name="header">Nom</f:facet>    				
                #{leClient.nom}
