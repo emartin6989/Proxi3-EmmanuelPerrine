@@ -38,18 +38,17 @@
 					</div>
 					
 						<div class="col-xs-12 col-sm-8 col-md-9 col-lg-9 content">
-							<h:outputLabel rendered="#{ sessionScope.droits =='CONSEILLER' }">
-								<p>Bonjour #{ sessionScope.prenom } #{ sessionScope.nom }</p>
+							<h:outputLabel rendered="#{sessionScope.droits =='CONSEILLER' }">
+								<p>Bonjour #{ conseillerBean.conseiller.prenom } #{ conseillerBean.conseiller.nom }</p>
 								<p>Vous êtes connecté en tant que conseiller.</p>
 								<p>
 									<h:commandLink value="Se déconnecter"
-										action="Authentification?action=deconnecter" />
-									<a href="Authentification?action=deconnecter">Se
-										déconnecter</a>
+										action="#{conseillerBean.disconnect}" />
+								
 								</p>
 							</h:outputLabel>
 
-							<h:outputLabel rendered="#{ empty sessionScope.droits }">
+						
 								<h:messages styleClass="error" />
 								<h:panelGrid columns="3">
 									<f:facet name="header">
@@ -67,8 +66,8 @@
 									<h:message for="mdp" errorClass="error"></h:message>
 								</h:panelGrid>
 								<h:commandButton type="submit" value="Valider"
-									action="Authentification?action=authentifier"></h:commandButton>
-							</h:outputLabel>
+									action="conseillerBean.authentification"></h:commandButton>
+				
 						</div>
 					</div>
 				</div>
