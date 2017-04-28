@@ -32,8 +32,8 @@
 				</div>
 
 				<h2>Virement entre les comptes du client
-					n°#{clientBean.personne.id}, #{ clientBean.personne.prenom}
-					#{clientBean.personne.nom} :</h2>
+					n°#{clientBean.client.id}, #{ clientBean.client.prenom}
+					#{clientBean.client.nom} :</h2>
 				<br />
 				<h:form>
 					<h:messages styleClass="error" />
@@ -71,7 +71,7 @@
 						<h:outputText value="#{leCompte.solde}" />
 					</h:panelGrid>
 					<h:commandButton type="submit" value="Virer"
-						action="#{conseillerBean.virement}" />
+						action="#{conseillerBean.virement(compteADebiter, compteACrediter,montant)}" />
 				</h:form>
 
 			</div>
