@@ -7,24 +7,26 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<link type="text/css" rel="stylesheet" href="themes/hot-sneaks/skin.css" />
+	<link type="text/css" rel="stylesheet"
+		href="themes/hot-sneaks/skin.css" />
 </h:head>
 
 <h:body>
-<p:panel>
-<h:form>
-<ul>
-	<li><h:commandLink value="Accueil" action="index"/></li>
-	<!-- renvoit à l'index -->
-	
-	<li>
-	<h:outputLink value="Authentification" rendered="#{ empty sessionScope.droits}">Authentification</h:outputLink>	
-	<h:outputLink value="Authentification?action=deconnecter" rendered="#{ sessionScope.droits=='CONSEILLER' }">Deconnexion</h:outputLink>	</li>
-	
-	<h:outputLink value="GestionClient?action=ListerClients" rendered="#{sessionScope.droits =='CONSEILLER'}"><li>Liste des clients</li></h:outputLink>
-	<h:outputLink value="GestionClient?action=Editer" rendered="#{ sessionScope.droits =='CONSEILLER'}"><li>Editer un client</li></h:outputLink>
-</ul>
-</h:form>
-</p:panel>
+	<p:panel>
+		<h:form>
+			<ul>
+				<li><h:commandLink value="Accueil" action="index" /></li>
+				<!-- renvoit à l'index -->
+
+				<li><h:commandLink value="Authentification"
+						action="authentification" /></li>
+
+				<h:commandLink action="editerClient"
+					rendered="#{ sessionScope.droits =='CONSEILLER'}">
+					<li>Editer un client</li>
+				</h:commandLink>
+			</ul>
+		</h:form>
+	</p:panel>
 </h:body>
 </h:html>
