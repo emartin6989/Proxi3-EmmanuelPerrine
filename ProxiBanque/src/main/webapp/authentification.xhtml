@@ -38,16 +38,7 @@
 					</div>
 					
 						<div class="col-xs-12 col-sm-8 col-md-9 col-lg-9 content">
-							<h:outputLabel rendered="#{sessionScope.droits =='CONSEILLER' }">
-								<p>Bonjour #{ conseillerBean.conseiller.prenom } #{ conseillerBean.conseiller.nom }</p>
-								<p>Vous êtes connecté en tant que conseiller.</p>
-								<p>
-									<h:commandLink value="Se déconnecter"
-										action="#{conseillerBean.disconnect}" />
-								
-								</p>
-							</h:outputLabel>
-
+					
 						
 								<h:panelGrid columns="3">
 									<f:facet name="header">
