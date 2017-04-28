@@ -119,32 +119,27 @@ public class ConseillerBean {
 		this.clients = clients;
 	}
 
-	@SuppressWarnings({ "deprecation" })
 	public String authentification() {
 		if (!(conseiller.getLogin().equalsIgnoreCase("") && conseiller.getLogin().equalsIgnoreCase(""))) {
 			String login = conseiller.getLogin();
 			String mdp = conseiller.getMdp();
 			this.conseiller = service.authentificationConseiller(login, mdp);
 			if (conseiller.getId() != 0) {
-				FacesContext context = FacesContext.getCurrentInstance();
-				Application app = context.getApplication();
-				Conseiller cb = (Conseiller) app.createValueBinding("#{conseillerBean.conseiller}").getValue(context);
-				
 				return "editerClient";
 				
 			} else {
 				FacesContext context = FacesContext.getCurrentInstance();
 				context.addMessage("conseiller", new FacesMessage(FacesMessage.SEVERITY_ERROR,
 						"Identifiants et/ou mot de passe inexistants", null));
-				return "index";
+				
 			}
 		} else {
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.addMessage("conseiller",
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Veuillez saisir des valeurs non nulles", null));
-			return "index";
+			
 		}
-
+		return "authentification";
 	}
 
 	public String virement(Compte compteEmetteur, Compte compteRecepteur, double montant) {
