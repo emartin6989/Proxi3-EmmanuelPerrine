@@ -10,7 +10,7 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import dao.DAO;
+import dao.Dao;
 import dao.Idao;
 import metier.Client;
 import metier.CompteCourant;
@@ -21,7 +21,7 @@ public class AjouterModifierEnBaseTest {
 
 	/*@Inject
 	private Idao dao;*/
-	Idao dao = new DAO();
+	Idao dao = new Dao();
 	
 	@Test
 	public void testAjouterCompteCourant() {

@@ -1,24 +1,23 @@
 package mbeans;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
-import javax.inject.Named;
 
-import metier.Carte;
 import metier.CarteVisaElectron;
 import metier.CarteVisaPremier;
 import metier.Client;
-import metier.Compte;
 import metier.CompteCourant;
 import metier.CompteEpargne;
+import service.ConseillerService;
 import service.IConseillerService;
 
-@Named
+//@Named
+@ManagedBean
 public class CompteBean {
 
-	@Inject
-	private IConseillerService service;
+	//@Inject
+	private IConseillerService  service= new ConseillerService();
 
 	private CompteCourant cCourant = new CompteCourant();
 	private CompteEpargne cEpargne = new CompteEpargne();

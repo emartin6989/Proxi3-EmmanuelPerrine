@@ -2,9 +2,7 @@ package service;
 
 import java.util.Collection;
 
-import javax.inject.Inject;
-
-import dao.DAO;
+import dao.Dao;
 import dao.Idao;
 import metier.Carte;
 import metier.CarteVisaElectron;
@@ -18,9 +16,9 @@ import metier.Coordonnees;
 
 public class ConseillerService implements IConseillerService {
 
-	@Inject 
-	private Idao dao;
-	//Idao dao = new DAO();
+
+
+Idao dao = new Dao();
 
 	@Override
 	public Client creerClient(Conseiller cons, Client c, Coordonnees coor) {

@@ -1,9 +1,9 @@
 package mbeans;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
-import javax.inject.Named;
+
 
 import metier.Client;
 import metier.Compte;
@@ -15,14 +15,14 @@ import service.ConseillerService;
 import service.IAuthentificationService;
 import service.IConseillerService;
 
-@Named
+@ManagedBean
 public class ConseillerBean {
 
 	
-	 @Inject
-	 private IAuthentificationService service;
-	 @Inject
-	 private IConseillerService cs;
+	// @Inject
+	 private IAuthentificationService service= new AuthentificationService();
+	// @Inject
+	 private IConseillerService cs= new ConseillerService();
 	 
 	//IAuthentificationService service = new AuthentificationService();
 	//IConseillerService cs = new ConseillerService();

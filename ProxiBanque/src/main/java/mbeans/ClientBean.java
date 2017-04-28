@@ -3,11 +3,9 @@ package mbeans;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.annotation.ManagedBean;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
-import javax.inject.Named;
 
 import metier.Client;
 import metier.Compte;
@@ -17,12 +15,12 @@ import metier.Personne;
 import service.ConseillerService;
 import service.IConseillerService;
 
-@Named
+@ManagedBean
 public class ClientBean {
 
-	@Inject
-	private IConseillerService service;
-//	IConseillerService service = new ConseillerService();
+	
+
+IConseillerService service = new ConseillerService();
 
 	private Client client = new Client();
 	private Collection<Client> clients = new ArrayList<Client>();

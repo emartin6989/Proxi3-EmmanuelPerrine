@@ -20,7 +20,7 @@ import metier.CompteEpargne;
 import metier.Conseiller;
 import metier.Coordonnees;
 
-public class DAO implements Idao {
+public class Dao implements Idao {
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("bddproxiv3-pu");
 
 	@Override

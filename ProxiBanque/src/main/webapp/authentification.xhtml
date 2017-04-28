@@ -49,7 +49,6 @@
 							</h:outputLabel>
 
 						
-								<h:messages styleClass="error" />
 								<h:panelGrid columns="3">
 									<f:facet name="header">
 										<h:outputText value="Authentification" />
@@ -65,8 +64,9 @@
 										requiredMessage="Le champs mot de passe est vide" />
 									<h:message for="mdp" errorClass="error"></h:message>
 								</h:panelGrid>
-								<h:commandButton type="submit" value="Valider"
-									action="conseillerBean.authentification"></h:commandButton>
+								<h:commandButton id="conseiller" type="submit" value="Valider" 
+									action="#{conseillerBean.authentification}"></h:commandButton>
+									<h:message for="conseiller" errorClass="error"/>
 				
 						</div>
 					</div>

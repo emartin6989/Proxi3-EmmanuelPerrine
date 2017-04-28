@@ -26,8 +26,8 @@ public abstract class Personne {
 	private String prenom;
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Coordonnees coordonnees;
-	private String login = null;
-	private String mdp = null;
+	protected String login = null;
+	protected String mdp = null;
 
 	/**
 	 * Getter de l'attribut id
