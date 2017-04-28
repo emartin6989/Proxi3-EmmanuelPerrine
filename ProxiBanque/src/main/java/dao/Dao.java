@@ -96,6 +96,7 @@ public class Dao implements Idao {
 		conseiller.getClients().add(client);
 		client.setConseiller(conseiller);
 		em.merge(client);
+		//em.merge(conseiller);
 		tx.commit();
 		em.close();
 	}
@@ -185,13 +186,14 @@ public class Dao implements Idao {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		Collection<Compte> listeComptes = c.getComptes();
+		em.remove(em.find(Client.class, c.getId()));
+		/*Collection<Compte> listeComptes = c.getComptes();
 		for (Compte compte : listeComptes) {
 			em.remove(compte.getCarte());
 		}
 
 		em.remove(listeComptes);
-		em.remove(c);
+		em.remove(c);*/
 
 		tx.commit();
 		em.close();

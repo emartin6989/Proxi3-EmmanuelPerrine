@@ -12,24 +12,21 @@ import metier.Client;
 import metier.Compte;
 import metier.Conseiller;
 import metier.Coordonnees;
-import metier.Personne;
 import service.ConseillerService;
 import service.IConseillerService;
 
 @ManagedBean
+//@ViewScoped
 @SessionScoped
 public class ClientBean {
 
-	
-
-IConseillerService service = new ConseillerService();
+	IConseillerService service = new ConseillerService();
 
 	private Client client = new Client();
 	private Collection<Client> clients = new ArrayList<Client>();
 	private Coordonnees coor = new Coordonnees();
 	private boolean editMode = false;
 	private Conseiller cons = new Conseiller();
-	private Personne personne;
 	private Collection<Compte> comptes = new ArrayList<Compte>();
 
 	
@@ -42,7 +39,8 @@ IConseillerService service = new ConseillerService();
 	}
 
 	/**
-	 * @param comptes the comptes to set
+	 * @param comptes
+	 *            the comptes to set
 	 */
 	public void setComptes(Collection<Compte> comptes) {
 		this.comptes = comptes;
@@ -123,14 +121,6 @@ IConseillerService service = new ConseillerService();
 		this.client = client;
 	}
 
-	public Personne getPersonne() {
-		return personne;
-	}
-
-	public void setPersonne(Personne personne) {
-		this.personne = personne;
-	}
-
 	/**
 	 * @return the editMode
 	 */
@@ -161,15 +151,17 @@ IConseillerService service = new ConseillerService();
 		service = conseillerService;
 	}
 
-	public String delete() {
-		if(cons.getClients().contains(client)){
-		service.supprimerClient(client);}
-		else{FacesContext context = FacesContext.getCurrentInstance();
+	public void delete() {
+		/*if (cons.getClients().contains(client)) {
+			*/service.supprimerClient(client);/*
+		} else {
+			FacesContext context = FacesContext.getCurrentInstance();
 			context.addMessage("client",
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Vous ne gérez pas ce client", null));
-		}
+		}*/
 		client = new Client();
-		return "editerClient";
+		coor = new Coordonnees();
+		//return "editerClient";
 	}
 
 	public void maj() {
@@ -177,28 +169,39 @@ IConseillerService service = new ConseillerService();
 	}
 
 	public String add() {
+
 		if (!(client.getNom().equalsIgnoreCase("") && client.getPrenom().equalsIgnoreCase("")
 				&& coor.getAdresse().equalsIgnoreCase("") && coor.getCp().equalsIgnoreCase("")
 				&& coor.getEmail().equalsIgnoreCase("") && coor.getTelephone().equalsIgnoreCase("")
 				&& coor.getVille().equalsIgnoreCase(""))) {
 			if (editMode == false) {
 				if (cons.getClients().size() < 10) {
-					if (client.getConseiller() != null) {
+					if (client.getConseiller() == null) {
 						service.creerClient(cons, client, coor);
+						client = new Client();
+						coor = new Coordonnees();
+						return "editerClient";
+
 					} else {
 						FacesContext context = FacesContext.getCurrentInstance();
 						context.addMessage("client",
 								new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ce client a déjà un conseiller", null));
+						client = new Client();
+						coor = new Coordonnees();
 					}
 
 				} else {
 					FacesContext context = FacesContext.getCurrentInstance();
 					context.addMessage("client",
 							new FacesMessage(FacesMessage.SEVERITY_ERROR, "Vous avez déjà 10 clients a gérer", null));
+					client = new Client();
+					coor = new Coordonnees();
 				}
 			} else {
 				service.modifierClient(client, coor);
 				editMode = false;
+				client = new Client();
+				coor = new Coordonnees();
 			}
 		} else {
 			FacesContext context = FacesContext.getCurrentInstance();
@@ -206,6 +209,7 @@ IConseillerService service = new ConseillerService();
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Veuillez saisir des valeurs non nulles", null));
 		}
 		client = new Client();
+		coor = new Coordonnees();
 		return "editerClient";
 	}
 

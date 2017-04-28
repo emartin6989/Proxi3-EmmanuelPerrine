@@ -2,6 +2,7 @@ package mbeans;
 
 import java.util.Collection;
 
+import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -118,13 +119,19 @@ public class ConseillerBean {
 		this.clients = clients;
 	}
 
+	@SuppressWarnings({ "deprecation" })
 	public String authentification() {
 		if (!(conseiller.getLogin().equalsIgnoreCase("") && conseiller.getLogin().equalsIgnoreCase(""))) {
 			String login = conseiller.getLogin();
 			String mdp = conseiller.getMdp();
-			conseiller = service.authentificationConseiller(login, mdp);
+			this.conseiller = service.authentificationConseiller(login, mdp);
 			if (conseiller.getId() != 0) {
+				FacesContext context = FacesContext.getCurrentInstance();
+				Application app = context.getApplication();
+				Conseiller cb = (Conseiller) app.createValueBinding("#{conseillerBean.conseiller}").getValue(context);
+				
 				return "editerClient";
+				
 			} else {
 				FacesContext context = FacesContext.getCurrentInstance();
 				context.addMessage("conseiller", new FacesMessage(FacesMessage.SEVERITY_ERROR,

@@ -39,14 +39,14 @@
 
 					<div class="col-xs-12 col-sm-8 col-md-9 col-lg-9 content">
 
-						<h:outputText rendered="#{ sessionScope.droits !='CONSEILLER' }">
+					<!-- 	<h:outputText rendered="#{ sessionScope.droits !='CONSEILLER' }">
 							<p>Vous n'avez pas les droits nécessaires pour cette action</p>
 							<p>
 								<h:commandLink value="Se déconnecter"
 									action="Authentification?action=deconnecter" />
 							</p>
 						</h:outputText>
-
+ -->
 					
 
 							<h:messages styleClass="error" />
@@ -56,42 +56,35 @@
 								</f:facet>
 								<h:outputLabel value="Nom :" />
 								<h:inputText value="#{clientBean.client.nom}" id="nom"
-									required="true" label="nom"
-									requiredMessage="Le champs nom est vide" />
+									label="nom" />
 								<h:message for="nom" errorClass="error"></h:message>
 								<h:outputLabel value="Prénom :" />
 								<h:inputText value="#{clientBean.client.prenom}" id="prenom"
-									required="true" label="prenom"
-									requiredMessage="Le champs prenom est vide" />
+									label="prenom" />
 								<h:message for="prenom" errorClass="error"></h:message>
 								<h:outputLabel value="Adresse :" />
 								<h:inputText value="#{clientBean.coor.adresse}"
-									id="adresse" required="true" label="adresse"
-									requiredMessage="Le champs adresse est vide" />
+									id="adresse" label="adresse" />
 								<h:message for="adresse" errorClass="error"></h:message>
 								<h:outputLabel value="Ville :" />
 								<h:inputText value="#{clientBean.coor.ville}" id="ville"
-									required="true" label="ville"
-									requiredMessage="Le champs ville est vide" />
+									label="ville"/>
 								<h:message for="ville" errorClass="error"></h:message>
 								<h:outputLabel value="Code postal :" />
 								<h:inputText value="#{clientBean.coor.cp}" id="cp"
-									required="true" label="code postal"
-									requiredMessage="Le champs code postal est vide" />
+									label="code postal"/>
 								<h:message for="cp" errorClass="error"></h:message>
 								<h:outputLabel value="E-mail :" />
 								<h:inputText value="#{clientBean.coor.email}" id="email"
-									required="true" label="email"
-									requiredMessage="Le champs email est vide" />
+									label="email"/>
 								<h:message for="email" errorClass="error"></h:message>
 								<h:outputLabel value="Téléphone :" />
 								<h:inputText value="#{clientBean.coor.telephone}"
-									id="telephone" required="true" label="telephone"
-									requiredMessage="Le champs telephone est vide" />
+									id="telephone" label="telephone" />
 								<h:message for="telephone" errorClass="error"></h:message>
 							</h:panelGrid>
-							<h:commandButton type="submit" value="Ajouter"
-								action="#{clientBean.add}" />
+							<h:commandButton type="submit" update="@form"
+								action="#{clientBean.add}"  value="#{clientBean.editMode ? 'Modifier':'Ajouter'}"/>
 
 
 							<h2>Liste des Clients</h2>
@@ -130,18 +123,14 @@
 								<h:column>
 
 									<f:facet name="header">Supprimer</f:facet>
-									<h:commandLink update="@form" value="Supprimer"
-										action="#{clientBean.delete}">
-										<f:setPropertyActionListener value="#{leClient}"
-											target="#{clientBean.client}"></f:setPropertyActionListener>
+									<h:commandLink update="@form" value="Supprimer" action="#{clientBean.delete}">
+										<f:setPropertyActionListener value="#{leClient}" target="#{clientBean.client}"></f:setPropertyActionListener>
 									</h:commandLink>
 								</h:column>
 								<h:column>
 									<f:facet name="header">Modifier</f:facet>
-									<h:commandLink update="@form" value="Modifier"
-										action="#{clientBean.maj}">
-										<f:setPropertyActionListener value="#{leClient}"
-											target="#{clientBean.client}"></f:setPropertyActionListener>
+									<h:commandLink update="@form" value="Modifier" action="#{clientBean.maj}">
+										<f:setPropertyActionListener value="#{leClient}" target="#{clientBean.client}"></f:setPropertyActionListener>
 									</h:commandLink>
 								</h:column>
 							</h:dataTable>
