@@ -133,6 +133,12 @@
 										<f:setPropertyActionListener value="#{leClient}" target="#{clientBean.client}"></f:setPropertyActionListener>
 									</h:commandLink>
 								</h:column>
+								<h:column>
+									<f:facet name="header">Modifier</f:facet>
+									<h:commandLink update="@form" value="Liste des comptes" action="#{clientBean.listerComptes}">
+										<f:setPropertyActionListener value="#{leClient}" target="#{clientBean.client}"></f:setPropertyActionListener>
+									</h:commandLink>
+								</h:column>
 							</h:dataTable>
 							<h:outputText rendered="#{editMode==true}">
 								<p>Le client a été modifié.</p>

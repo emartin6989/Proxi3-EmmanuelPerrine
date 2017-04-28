@@ -44,9 +44,8 @@
 						</f:facet>
 						<h:outputLabel value="Selectionner un compte :" />
 						<h:inputText type="radio" name="compteADebiter"
-							id="compteADebiter" value="#{leCompte.numCompte}" required="true"
-							label="Compte à débiter"
-							requiredMessage="Le champs Compte à débiter est vide" />
+							id="compteADebiter" value="#{leCompte.numCompte}"
+							label="Compte à débiter" />
 						<h:message for="compteADebiter" errorClass="error"></h:message>
 						<h:outputLabel value="N° Compte :" />
 						<h:outputText value="#{leCompte.numCompte}" />
@@ -62,16 +61,18 @@
 						<h:outputLabel value="Selectionner un compte :" />
 						<h:inputText type="radio" name="compteACrediter"
 							id="compteACrediter" value="#{leCompte.numCompte}"
-							required="true" label="Compte à crébiter"
-							requiredMessage="Le champs Compte à créditer est vide" />
+							label="Compte à crébiter" />
 						<h:message for="compteACrediter" errorClass="error"></h:message>
 						<h:outputLabel value="N° Compte :" />
 						<h:outputText value="#{leCompte.numCompte}" />
 						<h:outputLabel value="Solde :" />
 						<h:outputText value="#{leCompte.solde}" />
 					</h:panelGrid>
-					<h:commandButton type="submit" value="Virer"
-						action="#{conseillerBean.virement(compteADebiter, compteACrediter,montant)}" />
+					<h:panelGrid columns="2">
+						<h:outputLabel value="Montant :" />
+						<h:inputText value="montant" id="montant" />
+						<h:commandButton type="submit" value="Virer"
+							action="#{conseillerBean.virement(compteADebiter,compteACrediter,montant)}" />
 				</h:form>
 
 			</div>
