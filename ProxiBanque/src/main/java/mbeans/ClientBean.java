@@ -212,5 +212,11 @@ public class ClientBean {
 		coor = new Coordonnees();
 		return "editerClient";
 	}
+	
+	public String listerComptes() {
+		Client clientcourant=this.client;
+		comptes = service.listerComptes(clientcourant);
+		return "listeCompte";
+	}
 
 }
