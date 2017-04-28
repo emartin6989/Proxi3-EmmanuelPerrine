@@ -217,8 +217,8 @@ public class Dao implements Idao {
 		Query req = em.createQuery("SELECT cons FROM Conseiller cons where cons.login = :login and cons.mdp = :mdp");
 		req.setParameter("login", login);
 		req.setParameter("mdp", mdp);
-		if (req.getSingleResult()!=null) {
-			cons =  (Conseiller)req.getSingleResult();
+		if (req.getResultList().size()==1) {
+			cons = (Conseiller)req.getSingleResult();
 			return cons;
 		}
 		tx.commit();
