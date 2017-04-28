@@ -1,5 +1,6 @@
 package metier;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -11,7 +12,7 @@ import javax.persistence.OneToOne;
  *
  */
 @Entity
-//@DiscriminatorValue("GERANT")
+@DiscriminatorValue("GERANT")
 public class Gerant extends Personne {
 
 

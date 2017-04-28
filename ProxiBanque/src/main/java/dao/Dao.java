@@ -31,6 +31,7 @@ public class Dao implements Idao {
 
 		c.setCoordonnees(coor);
 		em.persist(c);
+		em.persist(coor);
 
 		tx.commit();
 		em.close();

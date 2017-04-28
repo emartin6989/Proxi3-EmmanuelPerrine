@@ -3,6 +3,7 @@ package metier;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
@@ -15,7 +16,7 @@ import javax.persistence.OneToMany;
  *
  */
 @Entity
-//@DiscriminatorValue("CLIENT")
+@DiscriminatorValue("CLIENT")
 @NamedQuery(name = "Client.findAll", query = "SELECT c FROM Client c where c.conseiller.id = :idcons")
 public class Client extends Personne {
 
